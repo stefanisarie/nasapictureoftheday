@@ -34,7 +34,7 @@ yarn build
 
 Run built application with the following command:
 
-```tezxt
+```text
 node .output/server/index.mjs 
 ```
 
