@@ -16,7 +16,7 @@ yarn install
 yarn dev
 ```
 
-The development server should run at `http://localhost:3000`.
+The development server should run at `http://localhost:3000`. Please make sure to update the NASA_API_KEY in your .env file.
 
 You will be able to toggle between dark and light mode with the button placed in the top left corner.
 

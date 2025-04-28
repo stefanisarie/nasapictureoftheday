@@ -66,9 +66,9 @@
         <h1 class="text-3xl font-bold">{{ apod.title }} @ {{ apod.date }} ({{ lowResImage ? 'Low' : 'High' }} resolution)</h1>
 
         <p class="italic">{{ apod.explanation }}</p>
-        <p>{{ apod.copyright }}</p>
+        <p v-show="apod.copyright">&copy; {{ apod.copyright }}</p>
 
-        <p>Last fetched at: {{ useFormatDate(apod.timestamp) }}</p>
+        <p class="text-gray-300 dark:text-gray-600 text-xs">Last fetched at: {{ useFormatDate(apod.timestamp) }}</p>
       </div>
       <div class="text-red-500" v-else>
         <p class="font-bold">There is an issue getting the image of the day from NASA.</p>

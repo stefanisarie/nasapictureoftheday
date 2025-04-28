@@ -7,6 +7,9 @@ export default defineNuxtConfig({
   experimental: {
     asyncContext: true,
   },
+  runtimeConfig: {
+    NASA_API_KEY: process.env.NASA_API_KEY,
+  },
   css: ['~/assets/css/main.css'],
   vite: {
     plugins: [
