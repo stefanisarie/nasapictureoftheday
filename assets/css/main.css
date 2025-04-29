@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+html {
+  @apply bg-white text-black
+}
+
 html.dark {
-  @apply bg-black
+  @apply bg-black text-white
 }
