@@ -1,9 +1,21 @@
 <script setup lang="ts">
+  type ApodData = {
+    copyright: string;
+    date: string; // Format: YYYY-MM-DD
+    explanation: string;
+    hdurl: string;
+    media_type: string;
+    service_version: string;
+    title: string;
+    url: string;
+    timestamp: number; // Unix timestamp
+  };
+
   // loading is by default true
   const loading = ref(true)
   
   // Make the call to the API
-  const { data: apod, error, status } = await useFetch(() => '/api/apod')
+  const { data: apod, error, status } = await useFetch<ApodData>(() => '/api/apod')
 
   // Change the loading state to false
   if ( status === 'success' && apod.value ) {
