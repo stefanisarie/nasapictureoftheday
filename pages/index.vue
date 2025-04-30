@@ -11,16 +11,8 @@
     timestamp: number; // Unix timestamp
   };
 
-  // loading is by default true
-  const loading = ref(true)
-  
   // Make the call to the API
-  const { data: apod, error, status } = await useFetch<ApodData>(() => '/api/apod')
-
-  // Change the loading state to false
-  if ( status === 'success' && apod.value ) {
-    loading.value = false
-  } 
+  const { data: apod, error, pending } = await useFetch<ApodData>(() => '/api/apod')
 
   // Format the date in a human readable format
   const useFormatDate = (timestamp) => {
@@ -53,7 +45,7 @@
 <template>
   <div class="container max-w-7xl mx-auto py-6 px-3 sm:px-5 md:px-8 xl:px-0">
     <!-- Loading indicator -->
-    <div v-if="!loading">
+    <div v-if="pending">
       Loading images from NASA...
     </div>
 
