@@ -11,8 +11,7 @@
     timestamp: number; // Unix timestamp
   };
 
-  // Make the call to the API
-  const { data: apod, error, pending } = await useFetch<ApodData>(() => '/api/apod')
+  const { status, data: apod, error } = useFetch<ApodData>('/api/apod')
 
   // Format the date in a human readable format
   const useFormatDate = (timestamp) => {
@@ -45,12 +44,12 @@
 <template>
   <div class="container max-w-7xl mx-auto py-6 px-3 sm:px-5 md:px-8 xl:px-0">
     <!-- Loading indicator -->
-    <div v-if="pending">
+    <div v-if="status === 'idle' || status === 'pending'" class="bg-green-300 dark:bg-green-800 text-gray-800 dark:text-gray-200 rounded-md shadow-md p-4 flex items-center space-x-2">
       Loading images from NASA...
     </div>
 
     <!-- Image of the day successfully fetched -->
-    <div class="aspect-w-16 aspect-h-9 flex flex-col space-y-6" v-else-if="apod">
+    <div class="aspect-w-16 aspect-h-9 flex flex-col space-y-6" v-if="status === 'success'">
       <div class="flex items-end justify-between w-full">
         <!-- Theme toggle button -->
         <div>
@@ -79,7 +78,7 @@
     </div>
 
     <!-- Error grabing the image for NASA API -->
-    <div class="text-red-500" v-else>
+    <div class="text-red-500" v-if="status === 'error'">
       <p class="font-bold">There is an issue getting the image of the day from NASA.</p>
       <p>{{ error }}</p>
     </div>
